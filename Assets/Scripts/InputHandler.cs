@@ -24,11 +24,13 @@ public class InputHandler : MonoBehaviour
     private bool Furioso;
     private bool Happy = false;
 
+    private int PlayerPuntuation = 2;
+
     private void Awake() {
         _mainCamera = Camera.main;
     }
 
-    public void OnClick(InputAction.CallbackContext context){
+    /*public void OnClick(InputAction.CallbackContext context){
         Debug.Log("rayhit");
 
         // si no está inicializada la escena 
@@ -42,7 +44,7 @@ public class InputHandler : MonoBehaviour
 
         // imprime el nombre del objeto del collider (aqui logica)
         Debug.Log(rayHit.collider.gameObject.name);
-    }
+    }*/
     // Start is called before the first frame update
     void Start()
     {
@@ -63,10 +65,78 @@ public class InputHandler : MonoBehaviour
         
     }
 
+    /*private IEnumerator PerformAction()
+    {
+        while (true)
+        {
+            
+            actionCompleted = false;
+
+            float timer = 0f;
+
+            while (timer < timeLimit)
+            {
+                timer += Time.deltaTime;
+
+                if (actionCompleted)
+                    break;
+
+                yield return null;
+            }
+
+            if (!actionCompleted)
+            {
+                Debug.Log("¡Perdiste! No completaste la acción a tiempo.");
+
+                yield return new WaitForSeconds(1f); 
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }*/
+
+    /*
+    private void CompleteAction()
+    {
+        if (!actionCompleted)
+        {
+            actionCompleted = true;
+            Debug.Log("¡Completaste la acción!");
+
+            // Aquí puedes agregar la lógica adicional para manejar la acción completada.
+
+        }
+    }*/
+
+    void GameOver()
+    {
+        if (PlayerPuntuation == 0 )
+        {
+            Debug.Log("valiste madre morro");
+        }
+        else 
+        {
+            CancelInvoke("GameOver");
+            Debug.Log("Chevin el jemima");
+            PlayerPuntuation = PlayerPuntuation - 1;
+            Invoke("GameOver", 5);
+        }
+    }
+
     void RandomFace(){
         Task = Random.Range(1,8);
-                Happy = false;
+        if (Happy == true){
+            //CompleteAction();
+            Debug.Log("Completaste este peduki");
+        }    
+        Invoke("GameOver", 5);
+        
+        Happy = false;
+        
         spriteR.sprite = sprites[Task];
+        //StartCoroutine(PerformAction());
     }
 
     void PlayChicken(){
@@ -76,10 +146,13 @@ public class InputHandler : MonoBehaviour
                 case 1:
                     spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
                     Invoke("RandomFace",1);
                 
                 break;
                 default:
+                GameOver();
+                RandomFace();
                 break;
             }
         }
@@ -92,12 +165,15 @@ public class InputHandler : MonoBehaviour
                     if(Furioso){
                         spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
                         Invoke("RandomFace",1);
                 
                     }
                     Furioso = true;
                 break;
                 default:
+                GameOver();
+                RandomFace();
                 break;
             }
         }
@@ -109,10 +185,13 @@ public class InputHandler : MonoBehaviour
             case 4:
                 spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
                 Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            RandomFace();
             break;
         }}
     }
@@ -123,10 +202,13 @@ if (!Happy){
             case 5:
                 spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
                 Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            RandomFace();
             break;
         }}
     }
@@ -137,10 +219,13 @@ if (!Happy){
             case 3:
                 spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
                 Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            RandomFace();
             break;
         }}
     }
@@ -152,6 +237,7 @@ if (!Happy){
                 if(Furioso){
                     spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
                     Invoke("RandomFace",1);
                 }
                 Furioso = true;
@@ -159,11 +245,13 @@ if (!Happy){
             case 6:
                 spriteR.sprite = sprites[0];
                 Happy = true;
-
+                CancelInvoke("GameOver");
                 Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            RandomFace();
             break;
         }}
     }
@@ -174,10 +262,13 @@ if (!Happy){
             case 7:
                 spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
                 Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            RandomFace();
             break;
         }}
     }
@@ -188,10 +279,13 @@ if (!Happy){
             case 8:
                 spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
                 Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            RandomFace();
             break;
         }}
     }
