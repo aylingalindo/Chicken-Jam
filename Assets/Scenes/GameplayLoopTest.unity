@@ -257,7 +257,7 @@ SpriteRenderer:
   m_Size: {x: 6, y: 5.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &42914364
@@ -837,7 +837,6 @@ MonoBehaviour:
   buttonRef: {fileID: 0}
   buttonRefFinal: {fileID: 0}
   life: 3
-  dead: 0
 --- !u!1 &1642034177
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +903,7 @@ SpriteRenderer:
   m_Size: {x: 6, y: 5.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1642034179
@@ -988,7 +987,7 @@ SpriteRenderer:
   m_Size: {x: 6, y: 5.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1964938920
