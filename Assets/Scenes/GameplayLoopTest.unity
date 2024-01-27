@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 950516924}
   - component: {fileID: 950516923}
   - component: {fileID: 950516922}
+  - component: {fileID: 950516925}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -357,7 +358,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 950516923}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1639929862}
+        m_TargetAssemblyTypeName: HealthSystem, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &950516923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +409,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950516920}
   m_CullTransparentMesh: 1
+--- !u!114 &950516925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950516920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb90913fa9422549a7f35c218dc95c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonRefFinal: {fileID: 950516922}
 --- !u!1 &952632044
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +834,8 @@ MonoBehaviour:
   - {fileID: 1964938918}
   - {fileID: 1642034177}
   - {fileID: 42914362}
+  buttonRef: {fileID: 0}
+  buttonRefFinal: {fileID: 0}
   life: 3
 --- !u!1 &1642034177
 GameObject:
