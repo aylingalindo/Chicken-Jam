@@ -11,6 +11,19 @@ public class InputHandler : MonoBehaviour
     public List<Sprite> sprites;
     public SpriteRenderer spriteR;
 
+    public Button Play;
+    public Button Eat;
+    public Button Sleep;
+    public Button Hug;
+    public Button Motivation;
+    public Button Clean;
+    public Button Shower;
+    public Button Water;
+
+    private int Task;
+    private bool Furioso;
+    private bool Happy = false;
+
     private void Awake() {
         _mainCamera = Camera.main;
     }
@@ -33,8 +46,15 @@ public class InputHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("a");
-        //InvokeRepeating("RandomFace", 0, 6);
+        RandomFace();
+        Play.onClick.AddListener(PlayChicken);
+        Eat.onClick.AddListener(EatChicken);
+        Sleep.onClick.AddListener(SleepChicken);
+        Hug.onClick.AddListener(HugChicken);
+        Motivation.onClick.AddListener(MotivationChicken);
+        Clean.onClick.AddListener(CleanChicken);
+        Shower.onClick.AddListener(ShowerChicken);
+        Water.onClick.AddListener(WaterChicken);
     }
 
     // Update is called once per frame
@@ -44,7 +64,135 @@ public class InputHandler : MonoBehaviour
     }
 
     void RandomFace(){
-        int index = Random.Range(0,8);
-        spriteR.sprite = sprites[index];
+        Task = Random.Range(1,8);
+                Happy = false;
+        spriteR.sprite = sprites[Task];
+    }
+
+    void PlayChicken(){
+        Debug.Log("Play");
+        if (!Happy){
+            switch(Task){
+                case 1:
+                    spriteR.sprite = sprites[0];
+                Happy = true;
+                    Invoke("RandomFace",1);
+                
+                break;
+                default:
+                break;
+            }
+        }
+    }
+    void EatChicken(){
+        Debug.Log("Eat");
+        if (!Happy){
+            switch(Task){
+                case 2:
+                    if(Furioso){
+                        spriteR.sprite = sprites[0];
+                Happy = true;
+                        Invoke("RandomFace",1);
+                
+                    }
+                    Furioso = true;
+                break;
+                default:
+                break;
+            }
+        }
+    }
+    void CleanChicken(){
+        Debug.Log("Clean");
+        if (!Happy){
+        switch(Task){
+            case 4:
+                spriteR.sprite = sprites[0];
+                Happy = true;
+                Invoke("RandomFace",1);
+                
+            break;
+            default:
+            break;
+        }}
+    }
+    void HugChicken(){
+        Debug.Log("Hug");
+if (!Happy){
+        switch(Task){
+            case 5:
+                spriteR.sprite = sprites[0];
+                Happy = true;
+                Invoke("RandomFace",1);
+                
+            break;
+            default:
+            break;
+        }}
+    }
+    void MotivationChicken(){
+        Debug.Log("Motivation");
+if (!Happy){
+        switch(Task){
+            case 3:
+                spriteR.sprite = sprites[0];
+                Happy = true;
+                Invoke("RandomFace",1);
+                
+            break;
+            default:
+            break;
+        }}
+    }
+    void SleepChicken(){
+        Debug.Log("Sleep");
+if (!Happy){
+        switch(Task){ 
+            case 2:
+                if(Furioso){
+                    spriteR.sprite = sprites[0];
+                Happy = true;
+                    Invoke("RandomFace",1);
+                }
+                Furioso = true;
+            break;
+            case 6:
+                spriteR.sprite = sprites[0];
+                Happy = true;
+
+                Invoke("RandomFace",1);
+                
+            break;
+            default:
+            break;
+        }}
+    }
+    void ShowerChicken(){
+        Debug.Log("Shower");
+        if (!Happy){
+        switch(Task){
+            case 7:
+                spriteR.sprite = sprites[0];
+                Happy = true;
+                Invoke("RandomFace",1);
+                
+            break;
+            default:
+            break;
+        }}
+    }
+    void WaterChicken(){
+        Debug.Log("Water");
+if (!Happy){
+        switch(Task){
+            case 8:
+                spriteR.sprite = sprites[0];
+                Happy = true;
+                Invoke("RandomFace",1);
+                
+            break;
+            default:
+            break;
+        }}
     }
 }
