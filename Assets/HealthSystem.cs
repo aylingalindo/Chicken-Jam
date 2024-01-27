@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
 
+    public GameObject GameOverUI;
+
     public GameObject[] hearts;
     public GameObject buttonRef;
     public Button buttonRefFinal;
@@ -34,7 +36,7 @@ public class HealthSystem : MonoBehaviour
         if (dead)
         {
             Debug.Log("ESTAMOS MUERTOS");
-            
+            GameOverUI.SetActive(true);
         }
     }
 
