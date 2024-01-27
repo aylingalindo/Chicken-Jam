@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d7bc7bf066ad549bb94db5ca68ffe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathScreen: {fileID: 0}
+  GameOverUI: {fileID: 1321735043}
   hearts:
   - {fileID: 1964938918}
   - {fileID: 1642034177}
@@ -1506,7 +1506,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1967528896}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 288894821}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1967528896
 MonoBehaviour:
   m_ObjectHideFlags: 0
