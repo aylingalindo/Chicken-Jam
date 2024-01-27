@@ -64,7 +64,7 @@ public class InputHandler : MonoBehaviour
     }
 
     void RandomFace(){
-        Task = Random.Range(1,8);
+        Task = Random.Range(1,9);
                 Happy = false;
         spriteR.sprite = sprites[Task];
     }
