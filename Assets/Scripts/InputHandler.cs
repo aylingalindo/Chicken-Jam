@@ -23,8 +23,10 @@ public class InputHandler : MonoBehaviour
     private int Task;
     private bool Furioso;
     private bool Happy = false;
+    public int TimeEmotion = 8;
 
-    private int PlayerPuntuation = 2;
+    private int PlayerPuntuation = 1;
+
 
     private void Awake() {
         _mainCamera = Camera.main;
@@ -62,7 +64,7 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     /*private IEnumerator PerformAction()
@@ -112,7 +114,7 @@ public class InputHandler : MonoBehaviour
 
     void GameOver()
     {
-        if (PlayerPuntuation == 0 )
+        if (PlayerPuntuation == 0 || Task == 2 || Task == 3|| Task == 7|| Task == 8)
         {
             Debug.Log("valiste madre morro");
         }
@@ -121,17 +123,21 @@ public class InputHandler : MonoBehaviour
             CancelInvoke("GameOver");
             Debug.Log("Chevin el jemima");
             PlayerPuntuation = PlayerPuntuation - 1;
-            Invoke("GameOver", 5);
+            RandomFace();
+            Invoke("GameOver", TimeEmotion);
+            tiempoRestante = tiempoInicial;
         }
     }
 
     void RandomFace(){
-        Task = Random.Range(1,8);
+
+
+        Task = Random.Range(1,9);
         if (Happy == true){
             //CompleteAction();
             Debug.Log("Completaste este peduki");
         }    
-        Invoke("GameOver", 5);
+        Invoke("GameOver", TimeEmotion);
         
         Happy = false;
         
@@ -152,7 +158,7 @@ public class InputHandler : MonoBehaviour
                 break;
                 default:
                 GameOver();
-                RandomFace();
+                //RandomFace();
                 break;
             }
         }
@@ -173,7 +179,7 @@ public class InputHandler : MonoBehaviour
                 break;
                 default:
                 GameOver();
-                RandomFace();
+                //RandomFace();
                 break;
             }
         }
@@ -191,7 +197,7 @@ public class InputHandler : MonoBehaviour
             break;
             default:
             GameOver();
-            RandomFace();
+            //RandomFace();
             break;
         }}
     }
@@ -208,7 +214,7 @@ if (!Happy){
             break;
             default:
             GameOver();
-            RandomFace();
+            //RandomFace();
             break;
         }}
     }
@@ -225,7 +231,7 @@ if (!Happy){
             break;
             default:
             GameOver();
-            RandomFace();
+            //RandomFace();
             break;
         }}
     }
@@ -251,7 +257,7 @@ if (!Happy){
             break;
             default:
             GameOver();
-            RandomFace();
+            //RandomFace();
             break;
         }}
     }
@@ -268,7 +274,7 @@ if (!Happy){
             break;
             default:
             GameOver();
-            RandomFace();
+            //RandomFace();
             break;
         }}
     }
@@ -285,7 +291,7 @@ if (!Happy){
             break;
             default:
             GameOver();
-            RandomFace();
+            //RandomFace();
             break;
         }}
     }
