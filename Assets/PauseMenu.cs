@@ -42,4 +42,15 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1; 
         IsGamePaused = false;
     }
+
+    public void LoadMenu()
+    {
+        Debug.Log("CargandoMenu...");
+    }
+
+    public void LoadOptions()
+    {
+        Debug.Log("Cargando Opciones...");
+    }
+
 }
