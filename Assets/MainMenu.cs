@@ -13,6 +13,16 @@ public class MainMenu : MonoBehaviour
        
     }
 
+    public void ChickenTaker()
+    {
+        PlayGame();
+    }
+
+    public void ChickenInstructor()
+    {
+        Debug.Log("Ventana Instructor");
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quit");
