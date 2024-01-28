@@ -48,8 +48,8 @@ public class InputHandler : MonoBehaviour
 
     private float realTime;
     private float totalTime;
-    private float dayTime = 25f;
-    private float currentDay = 1;
+    private float dayTime = 2f;
+    private float currentDay = 6;
 
     private void Awake() {
         _mainCamera = Camera.main;
@@ -73,7 +73,7 @@ public class InputHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            DayText.text = "Día: " + currentDay;
+        DayText.text = "Día: " + currentDay;
 
         explosionAnim.SetActive(false);
         showerAnim.SetActive(false);
@@ -131,7 +131,7 @@ public class InputHandler : MonoBehaviour
         }
         }
         else{
-            StartCoroutine(Delay(4f));
+            StartCoroutine(DelayDeath(4f));
         }
     }
 
