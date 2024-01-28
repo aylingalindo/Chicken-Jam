@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
@@ -24,6 +24,8 @@ public class InputHandler : MonoBehaviour
     private bool Furioso;
     private bool Happy = false;
     public int TimeEmotion = 8;
+    private bool EndGame;
+
 
     private int PlayerPuntuation = 1;
 
@@ -64,7 +66,10 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (EndGame)
+        {
+
+        }
     }
 
     /*private IEnumerator PerformAction()
@@ -112,11 +117,20 @@ public class InputHandler : MonoBehaviour
         }
     }*/
 
+
+    public void Counter()
+    {
+        int TiempoTest = 10;
+        TiempoTest -= Time.deltaTime;
+
+    }
+
     void GameOver()
     {
         if (PlayerPuntuation == 0 || Task == 2 || Task == 3|| Task == 7|| Task == 8)
         {
-            Debug.Log("valiste madre morro");
+            Debug.Log("valiste madre morro"); //Ya te cargo laa verga
+            EndGame = true;
         }
         else 
         {
@@ -124,8 +138,8 @@ public class InputHandler : MonoBehaviour
             Debug.Log("Chevin el jemima");
             PlayerPuntuation = PlayerPuntuation - 1;
             RandomFace();
-            Invoke("GameOver", TimeEmotion);
-            tiempoRestante = tiempoInicial;
+            Invoke("GameOver", TimeEmotion); //Hacer aqui un contador
+           // tiempoRestante = tiempoInicial;
         }
     }
 
