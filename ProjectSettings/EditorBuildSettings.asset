@@ -12,9 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/LvlPrincipal.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Nivel.unity
+    guid: 2bf6a13b6b4cd4fcf8c0e14b5372db83
+  - enabled: 1
     path: Assets/Scenes/MenuPausaTest.unity
     guid: 3c6bb80f55416964f8539fc0240daa24
   - enabled: 1
     path: Assets/Scenes/InstructorTest.unity
     guid: 77619c7e4e2d7cf46bc458f5e66dbe9f
+  - enabled: 1
+    path: Assets/Scenes/InstructiveScene.unity
+    guid: b1ba8120b0f64b34d92b2afddbe8bbdd
   m_configObjects: {}

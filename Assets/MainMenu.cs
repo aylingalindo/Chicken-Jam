@@ -8,8 +8,8 @@ public class MainMenu : MonoBehaviour
     //Creamos nuestra propia funcion para siempre que se llame nuestro boton
     public void PlayGame()
     {
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("Nivel");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
        
     }
 
@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour
     public void ChickenInstructor()
     {
         Debug.Log("Ventana Instructor");
+        SceneManager.LoadScene("InstructiveScene");
     }
 
     public void QuitGame()
