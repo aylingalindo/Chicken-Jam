@@ -621,6 +621,147 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345636734}
   m_CullTransparentMesh: 1
+--- !u!1 &347082465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 347082468}
+  - component: {fileID: 347082467}
+  - component: {fileID: 347082466}
+  m_Layer: 0
+  m_Name: ControladorSonidos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &347082466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347082465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c16b1ca8abf984d9f5851ffb57f229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &347082467
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347082465}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1.2
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &347082468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347082465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.276199, y: 0.32356453, z: 0.035848495}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408381933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,6 +2935,15 @@ MonoBehaviour:
   - {fileID: 939069947, guid: 2141e064b937c413c995c0f2ddf92e04, type: 3}
   - {fileID: 821716945, guid: 2141e064b937c413c995c0f2ddf92e04, type: 3}
   spriteR: {fileID: 605147928}
+  PioFeliz1: {fileID: 8300000, guid: 3d92036d66782d14bb34f296b26b7be8, type: 3}
+  PioEnojado: {fileID: 8300000, guid: 31eac2a4813b50c448f121ca4946fe02, type: 3}
+  PioFurioso: {fileID: 8300000, guid: 2c41be9c3c63e90428e99b5bf1ea49d0, type: 3}
+  PioTriste: {fileID: 8300000, guid: d7a0379f7464b074c8d472c8dfadcb2b, type: 3}
+  PioDepresivo: {fileID: 8300000, guid: 86592e0e556967d448713d2257417fd1, type: 3}
+  PioCagado: {fileID: 8300000, guid: 49daa14cb057ece4eb08d06b3f45442c, type: 3}
+  PioDiarrea: {fileID: 8300000, guid: dd62ecb7064c1bf468a70bf77fe0898a, type: 3}
+  PioCansado: {fileID: 8300000, guid: 2095ea4083c0ba5449375f10a0d521ee, type: 3}
+  PioMuyCansado: {fileID: 8300000, guid: 31c7580d0c4b93e41a59791c5fe2429f, type: 3}
   Play: {fileID: 1590522828}
   Eat: {fileID: 1199246234}
   Sleep: {fileID: 1897863572}
@@ -4017,3 +4167,4 @@ SceneRoots:
   - {fileID: 860580164}
   - {fileID: 820602254}
   - {fileID: 2101774427}
+  - {fileID: 347082468}

@@ -12,6 +12,19 @@ public class InputHandler : MonoBehaviour
     public List<Sprite> sprites;
     public SpriteRenderer spriteR;
 
+    //Cosas de sonido
+    [SerializeField] private AudioClip PioFeliz1;
+    [SerializeField] private AudioClip PioEnojado;
+    [SerializeField] private AudioClip PioFurioso;
+    [SerializeField] private AudioClip PioTriste;
+    [SerializeField] private AudioClip PioDepresivo;
+    [SerializeField] private AudioClip PioCagado;
+    [SerializeField] private AudioClip PioDiarrea;
+    [SerializeField] private AudioClip PioCansado;
+    [SerializeField] private AudioClip PioMuyCansado;
+
+
+
     public Button Play;
     public Button Eat;
     public Button Sleep;
@@ -70,7 +83,7 @@ public class InputHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            DayText.text = "Día: " + currentDay;
+        DayText.text = "Día: " + currentDay;
 
         explosionAnim.SetActive(false);
         showerAnim.SetActive(false);
@@ -149,6 +162,44 @@ public class InputHandler : MonoBehaviour
         }
         
             DayText.text = "Día: " + currentDay;
+    }
+
+    void setSound()
+    {
+        switch (Task)
+        {
+            case 1: //Enojado
+                ControllatorSounds.Instance.ExecuteSound(PioEnojado);
+            break;
+
+            case 2: //Enojado feo
+                ControllatorSounds.Instance.ExecuteSound(PioFurioso);
+            break;
+
+            case 3: //Triztesa fea
+                ControllatorSounds.Instance.ExecuteSound(PioDepresivo);
+            break;
+
+            case 4: //cagado
+                ControllatorSounds.Instance.ExecuteSound(PioCagado);
+            break;
+
+            case 5: //triste
+                ControllatorSounds.Instance.ExecuteSound(PioTriste);
+            break;
+
+            case 6: //Cansado
+                ControllatorSounds.Instance.ExecuteSound(PioCansado);
+            break;
+
+            case 7: //Cagado feo
+                ControllatorSounds.Instance.ExecuteSound(PioDiarrea);
+            break;
+
+            case 8: //Cansado feo 
+                ControllatorSounds.Instance.ExecuteSound(PioMuyCansado);
+            break;
+        }
     }
 
     /*private IEnumerator PerformAction()
@@ -273,6 +324,7 @@ public class InputHandler : MonoBehaviour
         Happy = false;
         
         spriteR.sprite = sprites[Task];
+        setSound();
         //StartCoroutine(PerformAction());
     }
 
@@ -286,7 +338,7 @@ public class InputHandler : MonoBehaviour
                 CancelInvoke("GameOver");
                     realTime = TimeEmotion;
                     Invoke("RandomFace",1);
-                
+                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
                 break;
                 default:
                 GameOver();
@@ -306,7 +358,7 @@ public class InputHandler : MonoBehaviour
                         CancelInvoke("GameOver");
                         realTime = TimeEmotion;
                         Invoke("RandomFace",1);
-                
+                        ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
                     }
                     Furioso = true;
                 break;
@@ -328,8 +380,8 @@ public class InputHandler : MonoBehaviour
                 CancelInvoke("GameOver");
                     realTime = TimeEmotion;
                     Invoke("RandomFace",1);
-                
-            break;
+                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    break;
             default:
             GameOver();
             //RandomFace();
@@ -346,8 +398,8 @@ if (!Happy){
                 CancelInvoke("GameOver");
                     realTime = TimeEmotion;
                     Invoke("RandomFace",1);
-                
-            break;
+                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    break;
             default:
             GameOver();
             //RandomFace();
@@ -364,8 +416,8 @@ if (!Happy){
                 CancelInvoke("GameOver");
                     realTime = TimeEmotion;
                     Invoke("RandomFace",1);
-                
-            break;
+                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    break;
             default:
             GameOver();
             //RandomFace();
@@ -392,8 +444,8 @@ if (!Happy){
                 CancelInvoke("GameOver");
                     realTime = TimeEmotion;
                     Invoke("RandomFace",1);
-                
-            break;
+                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    break;
             default:
             GameOver();
             //RandomFace();
@@ -410,8 +462,8 @@ if (!Happy){
                 CancelInvoke("GameOver");
                     realTime = TimeEmotion;
                     Invoke("RandomFace",1);
-                
-            break;
+                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    break;
             default:
             GameOver();
             //RandomFace();
@@ -428,8 +480,8 @@ if (!Happy){
                 CancelInvoke("GameOver");
                     realTime = TimeEmotion;
                     Invoke("RandomFace",1);
-                
-            break;
+                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    break;
             default:
             GameOver();
             //RandomFace();
