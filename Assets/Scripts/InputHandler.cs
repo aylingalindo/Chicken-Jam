@@ -13,6 +13,7 @@ public class InputHandler : MonoBehaviour
     public SpriteRenderer spriteR;
 
     //Cosas de sonido
+    //Expresiones
     [SerializeField] private AudioClip PioFeliz1;
     [SerializeField] private AudioClip PioEnojado;
     [SerializeField] private AudioClip PioFurioso;
@@ -22,6 +23,15 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private AudioClip PioDiarrea;
     [SerializeField] private AudioClip PioCansado;
     [SerializeField] private AudioClip PioMuyCansado;
+    //Acciones
+    [SerializeField] private AudioClip PlaySound;
+    [SerializeField] private AudioClip EatSound;
+    [SerializeField] private AudioClip HugSound;
+    [SerializeField] private AudioClip DoItSound;
+    [SerializeField] private AudioClip CleanSound;
+    [SerializeField] private AudioClip WashSound;
+    [SerializeField] private AudioClip SleepSound;
+    [SerializeField] private AudioClip GlugluSound;
 
 
 
@@ -61,8 +71,8 @@ public class InputHandler : MonoBehaviour
 
     private float realTime;
     private float totalTime;
-    private float dayTime = 2f;
-    private float currentDay = 6;
+    private float dayTime = 20f;
+    private float currentDay = 1;
 
     private void Awake() {
         _mainCamera = Camera.main;
@@ -178,35 +188,35 @@ public class InputHandler : MonoBehaviour
         switch (Task)
         {
             case 1: //Enojado
-                ControllatorSounds.Instance.ExecuteSound(PioEnojado);
+                ControllerSound.Instance.ExecuteSound(PioEnojado);
             break;
 
             case 2: //Enojado feo
-                ControllatorSounds.Instance.ExecuteSound(PioFurioso);
+                ControllerSound.Instance.ExecuteSound(PioFurioso);
             break;
 
             case 3: //Triztesa fea
-                ControllatorSounds.Instance.ExecuteSound(PioDepresivo);
+                ControllerSound.Instance.ExecuteSound(PioDepresivo);
             break;
 
             case 4: //cagado
-                ControllatorSounds.Instance.ExecuteSound(PioCagado);
+                ControllerSound.Instance.ExecuteSound(PioCagado);
             break;
 
             case 5: //triste
-                ControllatorSounds.Instance.ExecuteSound(PioTriste);
+                ControllerSound.Instance.ExecuteSound(PioTriste);
             break;
 
             case 6: //Cansado
-                ControllatorSounds.Instance.ExecuteSound(PioCansado);
+                ControllerSound.Instance.ExecuteSound(PioCansado);
             break;
 
             case 7: //Cagado feo
-                ControllatorSounds.Instance.ExecuteSound(PioDiarrea);
+                ControllerSound.Instance.ExecuteSound(PioDiarrea);
             break;
 
             case 8: //Cansado feo 
-                ControllatorSounds.Instance.ExecuteSound(PioMuyCansado);
+                ControllerSound.Instance.ExecuteSound(PioMuyCansado);
             break;
         }
     }
@@ -350,7 +360,8 @@ public class InputHandler : MonoBehaviour
                 realTime = TimeEmotion;
                 Invoke("RandomFace",2);
                 playAnim.SetActive(true);
-                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    ControllerSound.Instance.ExecuteSound(PlaySound);
+                    Debug.Log(PioFeliz1);
                 StartCoroutine(StopAnimation(playAnim, 1.0f));
                 break;
                 default:
@@ -379,7 +390,7 @@ public class InputHandler : MonoBehaviour
                         realTime = TimeEmotion;
                         Invoke("RandomFace",2);
                         eatAnim.SetActive(true);
-                        ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                        ControllerSound.Instance.ExecuteSound(EatSound);
                         StartCoroutine(StopAnimation(eatAnim, 1.0f));
                     }
                     Furioso = true;
@@ -402,7 +413,7 @@ public class InputHandler : MonoBehaviour
                 realTime = TimeEmotion;
                 Invoke("RandomFace",2);
                 cleanAnim.SetActive(true);
-                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    ControllerSound.Instance.ExecuteSound(CleanSound);
                 StartCoroutine(StopAnimation(cleanAnim, 1.0f));
                 
             break;
@@ -423,7 +434,7 @@ public class InputHandler : MonoBehaviour
                 realTime = TimeEmotion;
                 Invoke("RandomFace",2);
                 hugAnim.SetActive(true);
-                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    ControllerSound.Instance.ExecuteSound(HugSound);
                 StartCoroutine(StopAnimation(hugAnim, 1.0f));
             break;
             default:
@@ -443,7 +454,7 @@ if (!Happy){
                 realTime = TimeEmotion;
                 Invoke("RandomFace",2); // 1 + 1
                 motivationAnim.SetActive(true);
-                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    ControllerSound.Instance.ExecuteSound(DoItSound);
                 StartCoroutine(StopAnimation(motivationAnim, 1.0f));
             break;
             default:
@@ -475,7 +486,7 @@ if (!Happy){
                 realTime = TimeEmotion;
                 Invoke("RandomFace",2);
                 sleepAnim.SetActive(true);
-                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    ControllerSound.Instance.ExecuteSound(SleepSound);
                 StartCoroutine(StopAnimation(sleepAnim, 1.0f));
             break;
             default:
@@ -495,7 +506,7 @@ if (!Happy){
                 realTime = TimeEmotion;
                 Invoke("RandomFace",2);
                 showerAnim.SetActive(true);
-                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    ControllerSound.Instance.ExecuteSound(WashSound);
                 StartCoroutine(StopAnimation(showerAnim, 1.0f));
             break;
             default:
@@ -515,7 +526,7 @@ if (!Happy){
                 realTime = TimeEmotion;
                 Invoke("RandomFace",2);
                 waterAnim.SetActive(true);
-                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                    ControllerSound.Instance.ExecuteSound(GlugluSound);
                 StartCoroutine(StopAnimation(waterAnim, 1.0f));
             break;
             default:
