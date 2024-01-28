@@ -138,7 +138,7 @@ public class InputHandler : MonoBehaviour
         {
             Debug.Log("valiste madre morro");
             explosionAnim.SetActive(true);
-            StartCoroutine(Delay(1.5));
+            StartCoroutine(Delay(1.5f));
         }
         else 
         {
