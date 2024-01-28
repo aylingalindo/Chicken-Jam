@@ -27,6 +27,15 @@ public class InputHandler : MonoBehaviour
 
     private int PlayerPuntuation = 1;
 
+    public GameObject explosionAnim;
+    public GameObject showerAnim;
+    public GameObject waterAnim;
+    public GameObject sleepAnim;
+    public GameObject playAnim;
+    public GameObject eatAnim;
+    public GameObject motivationAnim;
+    public GameObject hugAnim;
+    public GameObject cleanAnim;
 
     private void Awake() {
         _mainCamera = Camera.main;
@@ -50,7 +59,18 @@ public class InputHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        explosionAnim.SetActive(false);
+        showerAnim.SetActive(false);
+        waterAnim.SetActive(false);
+        sleepAnim.SetActive(false);
+        playAnim.SetActive(false);
+        eatAnim.SetActive(false);
+        motivationAnim.SetActive(false);
+        hugAnim.SetActive(false);
+        cleanAnim.SetActive(false);
+
         RandomFace();
+
         Play.onClick.AddListener(PlayChicken);
         Eat.onClick.AddListener(EatChicken);
         Sleep.onClick.AddListener(SleepChicken);
@@ -117,6 +137,8 @@ public class InputHandler : MonoBehaviour
         if (PlayerPuntuation == 0)
         {
             Debug.Log("valiste madre morro");
+            explosionAnim.SetActive(true);
+            StartCoroutine(Delay(1.5));
         }
         else 
         {
@@ -126,6 +148,12 @@ public class InputHandler : MonoBehaviour
             RandomFace();
             Invoke("GameOver", TimeEmotion);
         }
+    }
+
+    IEnumerator Delay(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 
     void RandomFace(){
@@ -190,7 +218,7 @@ public class InputHandler : MonoBehaviour
                     spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                    Invoke("RandomFace",1);
+                Invoke("RandomFace",1);
                 
                 break;
                 default:
@@ -207,8 +235,8 @@ public class InputHandler : MonoBehaviour
                 case 2:
                     if(Furioso){
                         spriteR.sprite = sprites[0];
-                Happy = true;
-                CancelInvoke("GameOver");
+                        Happy = true;
+                        CancelInvoke("GameOver");
                         Invoke("RandomFace",1);
                 
                     }
