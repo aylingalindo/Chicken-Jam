@@ -24,6 +24,7 @@ public class InputHandler : MonoBehaviour
     private bool Furioso;
     private bool Happy = false;
     public int TimeEmotion = 8;
+    private bool fallaste = false; 
 
     private int PlayerPuntuation = 1;
 
@@ -142,6 +143,7 @@ public class InputHandler : MonoBehaviour
         }
         else 
         {
+            fallaste = true;
             CancelInvoke("GameOver");
             Debug.Log("Chevin el jemima");
             PlayerPuntuation = PlayerPuntuation - 1;
@@ -159,7 +161,8 @@ public class InputHandler : MonoBehaviour
     void RandomFace(){
 
         // if you just have one life remaining, the task is going to be strong emotion acordingly
-        if (PlayerPuntuation == 0) { // agregar bool de fallaste
+        if ((PlayerPuntuation == 0) && (fallaste == true)) { // agregar bool de fallaste
+            fallaste = false;
             switch(Task){
                 case 2: 
                 case 3:
