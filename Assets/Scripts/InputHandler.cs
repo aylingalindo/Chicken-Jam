@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
+using TMPro;
 
 public class InputHandler : MonoBehaviour
 {
@@ -23,12 +24,29 @@ public class InputHandler : MonoBehaviour
     private int Task;
     private bool Furioso;
     private bool Happy = false;
+    public int TimeEmotion = 8;
+
+    public TMP_Text CounterText;
+
+    private int PlayerPuntuation = 1;
+
+    public GameObject explosionAnim;
+    public GameObject showerAnim;
+    public GameObject waterAnim;
+    public GameObject sleepAnim;
+    public GameObject playAnim;
+    public GameObject eatAnim;
+    public GameObject motivationAnim;
+    public GameObject hugAnim;
+    public GameObject cleanAnim;
+
+    private float realTime;
 
     private void Awake() {
         _mainCamera = Camera.main;
     }
 
-    public void OnClick(InputAction.CallbackContext context){
+    /*public void OnClick(InputAction.CallbackContext context){
         Debug.Log("rayhit");
 
         // si no está inicializada la escena 
@@ -42,11 +60,22 @@ public class InputHandler : MonoBehaviour
 
         // imprime el nombre del objeto del collider (aqui logica)
         Debug.Log(rayHit.collider.gameObject.name);
-    }
+    }*/
     // Start is called before the first frame update
     void Start()
     {
+        explosionAnim.SetActive(false);
+        showerAnim.SetActive(false);
+        waterAnim.SetActive(false);
+        sleepAnim.SetActive(false);
+        playAnim.SetActive(false);
+        eatAnim.SetActive(false);
+        motivationAnim.SetActive(false);
+        hugAnim.SetActive(false);
+        cleanAnim.SetActive(false);
+
         RandomFace();
+
         Play.onClick.AddListener(PlayChicken);
         Eat.onClick.AddListener(EatChicken);
         Sleep.onClick.AddListener(SleepChicken);
@@ -60,13 +89,140 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (realTime > 0)
+        {
+            if (realTime - Time.deltaTime < 0)
+                realTime = 0;
+            else
+                realTime -= Time.deltaTime;
+            CounterText.text = realTime.ToString("F2");
+        }
+        Debug.Log(realTime);
+    }
+
+    /*private IEnumerator PerformAction()
+    {
+        while (true)
+        {
+            
+            actionCompleted = false;
+
+            float timer = 0f;
+
+            while (timer < timeLimit)
+            {
+                timer += Time.deltaTime;
+
+                if (actionCompleted)
+                    break;
+
+                yield return null;
+            }
+
+            if (!actionCompleted)
+            {
+                Debug.Log("¡Perdiste! No completaste la acción a tiempo.");
+
+                yield return new WaitForSeconds(1f); 
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }*/
+
+    /*
+    private void CompleteAction()
+    {
+        if (!actionCompleted)
+        {
+            actionCompleted = true;
+            Debug.Log("¡Completaste la acción!");
+
+            // Aquí puedes agregar la lógica adicional para manejar la acción completada.
+
+        }
+    }*/
+
+    void GameOver()
+    {
+        if (PlayerPuntuation == 0)
+        {
+            Debug.Log("valiste madre morro");
+            explosionAnim.SetActive(true);
+            StartCoroutine(Delay(1.5f));
+        }
+        else
+        {
+            CancelInvoke("GameOver");
+            Debug.Log("Chevin el jemima");
+            PlayerPuntuation = PlayerPuntuation - 1;
+            RandomFace();
+            realTime = TimeEmotion;
+            Invoke("GameOver", TimeEmotion);
+        }
+    }
+
+    IEnumerator Delay(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 
     void RandomFace(){
-        Task = Random.Range(1,8);
-                Happy = false;
+
+        // if you just have one life remaining, the task is going to be strong emotion acordingly
+        if (PlayerPuntuation == 0) {
+            switch(Task){
+                case 2: 
+                case 3:
+                case 7:
+                case 8:
+                int[] specificNumbers = { 2, 3, 7, 8 };
+                int randomIndex = Random.Range(0, specificNumbers.Length);
+                Task = specificNumbers[randomIndex];
+                break;
+
+                case 1:
+                Task = 2;
+                break;
+
+                case 4:
+                Task = 7;
+                break;
+
+                case 5:
+                Task = 3;
+                break;
+
+                case 6:
+                Task = 8;
+                break;
+
+                default:
+                Task = Random.Range(1,9);
+                break;
+
+            }
+        } 
+        // if you have the two lives, the task is random
+        else {
+            // logica de los dias?
+            Task = Random.Range(1,9);
+        }
+
+        if (Happy == true){
+            //CompleteAction();
+            Debug.Log("Completaste este peduki");
+        }
+        realTime = TimeEmotion;
+        Invoke("GameOver", TimeEmotion);
+        
+        Happy = false;
+        
         spriteR.sprite = sprites[Task];
+        //StartCoroutine(PerformAction());
     }
 
     void PlayChicken(){
@@ -76,10 +232,14 @@ public class InputHandler : MonoBehaviour
                 case 1:
                     spriteR.sprite = sprites[0];
                 Happy = true;
+                CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
                     Invoke("RandomFace",1);
                 
                 break;
                 default:
+                GameOver();
+                //RandomFace();
                 break;
             }
         }
@@ -91,13 +251,17 @@ public class InputHandler : MonoBehaviour
                 case 2:
                     if(Furioso){
                         spriteR.sprite = sprites[0];
-                Happy = true;
+                        Happy = true;
+                        CancelInvoke("GameOver");
+                        realTime = TimeEmotion;
                         Invoke("RandomFace",1);
                 
                     }
                     Furioso = true;
                 break;
                 default:
+                GameOver();
+                //RandomFace();
                 break;
             }
         }
@@ -109,10 +273,15 @@ public class InputHandler : MonoBehaviour
             case 4:
                 spriteR.sprite = sprites[0];
                 Happy = true;
-                Invoke("RandomFace",1);
+
+                CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            //RandomFace();
             break;
         }}
     }
@@ -123,10 +292,14 @@ if (!Happy){
             case 5:
                 spriteR.sprite = sprites[0];
                 Happy = true;
-                Invoke("RandomFace",1);
+                CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            //RandomFace();
             break;
         }}
     }
@@ -137,10 +310,14 @@ if (!Happy){
             case 3:
                 spriteR.sprite = sprites[0];
                 Happy = true;
-                Invoke("RandomFace",1);
+                CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            //RandomFace();
             break;
         }}
     }
@@ -152,18 +329,23 @@ if (!Happy){
                 if(Furioso){
                     spriteR.sprite = sprites[0];
                 Happy = true;
-                    Invoke("RandomFace",1);
+                CancelInvoke("GameOver");
+                        realTime = TimeEmotion;
+                        Invoke("RandomFace",1);
                 }
                 Furioso = true;
             break;
             case 6:
                 spriteR.sprite = sprites[0];
                 Happy = true;
-
-                Invoke("RandomFace",1);
+                CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            //RandomFace();
             break;
         }}
     }
@@ -174,10 +356,14 @@ if (!Happy){
             case 7:
                 spriteR.sprite = sprites[0];
                 Happy = true;
-                Invoke("RandomFace",1);
+                CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            //RandomFace();
             break;
         }}
     }
@@ -188,10 +374,14 @@ if (!Happy){
             case 8:
                 spriteR.sprite = sprites[0];
                 Happy = true;
-                Invoke("RandomFace",1);
+                CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
+            GameOver();
+            //RandomFace();
             break;
         }}
     }
