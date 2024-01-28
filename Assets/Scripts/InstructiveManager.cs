@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class InstructiveManager : MonoBehaviour
@@ -25,15 +26,15 @@ public class InstructiveManager : MonoBehaviour
     //instructions captions
     private List<string> instructions = new List<string>
     {
-        "INDICACIONES PARA CUIDADO DEL POLLITO",
-        "Si el pollito está triste...", "Necesita un abrazo",
-        "Si el pollito está muy triste...", "Necesita una frase motivadora",
-        "Si el pollito está enojado...", "Necesita jugar",
-        "Si el pollito está muy enojado...", "Necesita comer y dormir",
-        "Si el pollito está cansado...", "Necesita dormir",
-        "Si el pollito está muy cansado...", "Necesita agua",
-        "Si el pollito se hizo popó...", "Necesita limpiarse",
-        "Si el pollito hizo mucha popó...", "Necesita bañarse"
+        "FOLLOW THE INSTRUCTIONS TO TAKE CARE OF BARTOLO CHICKEN POLLO",
+        "If bartolo is sad he...", "Needs a hug",
+        "If bartolo is VERY sad he...", "Needs a word encouragement",
+        "If bartolo is angry he...", "Needs to play",
+        "If bartolo is VERY angry he...", "Needs to eat OR sleep",
+        "If bartolo is tired he...", "Needs to sleep",
+        "If bartolo is VERY tired he...", "Needs water",
+        "If bartolo pooped he...", "Needs to be cleaned",
+        "If bartolo popped A LOT he...", "Needs a shower"
     };
 
     public List<string> sad;
@@ -64,15 +65,24 @@ public class InstructiveManager : MonoBehaviour
         tooPooped = new List<string> { instructions[15], instructions[16] };
 
         randomInstruction();
-        pageText.text = "Hoja " + pageCounter + "/" + (instructions.Count - 1);
+        pageText.text = "Page " + pageCounter + "/" + (instructions.Count - 1);
         instructionText.text = instructions[pageCounter];
 
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MenuPrincipal");
+        }
+    }
+
+
     void randomInstruction()
     {
         List <int> i = new List<int> { 0,1,2,3,4,5,6,7};
-        instructions = new List<string> { "INDICACIONES PARA CUIDADO DEL POLLITO" };
+        instructions = new List<string> { "FOLLOW THE INSTRUCTIONS TO TAKE CARE OF BARTOLO CHICKEN POLLO" };
         indexesImages = new List<int> { };
         while (instructions.Count < 17)
        {
@@ -133,7 +143,7 @@ public class InstructiveManager : MonoBehaviour
         pageCounter = pageCounter <= 0 ? 0 : pageCounter;
         Debug.Log(pageCounter);
 
-        pageText.text = "Hoja " + pageCounter + "/" + MAX_PAGE;
+        pageText.text = "Page " + pageCounter + "/" + MAX_PAGE;
 
         //instruction behaviour
         instructionText.text = instructions[pageCounter];
@@ -159,7 +169,7 @@ public class InstructiveManager : MonoBehaviour
         pageCounter = pageCounter <= 0 ? 0 : pageCounter;
         Debug.Log(pageCounter);
 
-        pageText.text = "Hoja " + pageCounter + "/" + MAX_PAGE;
+        pageText.text = "Page " + pageCounter + "/" + MAX_PAGE;
 
         //instruction behaviour
         instructionText.text = instructions[pageCounter];
