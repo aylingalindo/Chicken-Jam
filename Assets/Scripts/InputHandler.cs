@@ -138,7 +138,7 @@ public class InputHandler : MonoBehaviour
         {
             Debug.Log("valiste madre morro");
             explosionAnim.SetActive(true);
-            StartCoroutine(Delay(1.5f));
+            StartCoroutine(DelayDeath(1.5f));
         }
         else 
         {
@@ -150,7 +150,7 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    IEnumerator Delay(float secs)
+    IEnumerator DelayDeath(float secs)
     {
         yield return new WaitForSeconds(secs);
         UnityEditor.EditorApplication.isPlaying = false;
@@ -159,7 +159,7 @@ public class InputHandler : MonoBehaviour
     void RandomFace(){
 
         // if you just have one life remaining, the task is going to be strong emotion acordingly
-        if (PlayerPuntuation == 0) {
+        if (PlayerPuntuation == 0) { // agregar bool de fallaste
             switch(Task){
                 case 2: 
                 case 3:
@@ -218,8 +218,9 @@ public class InputHandler : MonoBehaviour
                     spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
-                
+                Invoke("RandomFace",2);
+                playAnim.SetActive(true);
+                StartCoroutine(StopAnimation(playAnim, 1.0f));
                 break;
                 default:
                 GameOver();
@@ -228,6 +229,13 @@ public class InputHandler : MonoBehaviour
             }
         }
     }
+
+    IEnumerator StopAnimation(GameObject anim, float time){
+        yield return new WaitForSeconds(time);
+        anim.SetActive(false);
+        //xsInvoke("RandomFace",1);
+    }
+
     void EatChicken(){
         Debug.Log("Eat");
         if (!Happy){
@@ -237,8 +245,9 @@ public class InputHandler : MonoBehaviour
                         spriteR.sprite = sprites[0];
                         Happy = true;
                         CancelInvoke("GameOver");
-                        Invoke("RandomFace",1);
-                
+                        Invoke("RandomFace",2);
+                        eatAnim.SetActive(true);
+                        StartCoroutine(StopAnimation(eatAnim, 1.0f));
                     }
                     Furioso = true;
                 break;
@@ -257,7 +266,9 @@ public class InputHandler : MonoBehaviour
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
+                Invoke("RandomFace",2);
+                cleanAnim.SetActive(true);
+                StartCoroutine(StopAnimation(cleanAnim, 1.0f));
                 
             break;
             default:
@@ -268,14 +279,15 @@ public class InputHandler : MonoBehaviour
     }
     void HugChicken(){
         Debug.Log("Hug");
-if (!Happy){
+        if (!Happy){
         switch(Task){
             case 5:
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
-                
+                Invoke("RandomFace",2);
+                hugAnim.SetActive(true);
+                StartCoroutine(StopAnimation(hugAnim, 1.0f));
             break;
             default:
             GameOver();
@@ -291,8 +303,9 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
-                
+                Invoke("RandomFace",2); // 1 + 1
+                motivationAnim.SetActive(true);
+                StartCoroutine(StopAnimation(motivationAnim, 1.0f));
             break;
             default:
             GameOver();
@@ -302,14 +315,16 @@ if (!Happy){
     }
     void SleepChicken(){
         Debug.Log("Sleep");
-if (!Happy){
+        if (!Happy){
         switch(Task){ 
             case 2:
                 if(Furioso){
                     spriteR.sprite = sprites[0];
-                Happy = true;
-                CancelInvoke("GameOver");
-                    Invoke("RandomFace",1);
+                    Happy = true;
+                    CancelInvoke("GameOver");
+                    Invoke("RandomFace",2);
+                    sleepAnim.SetActive(true);
+                    StartCoroutine(StopAnimation(sleepAnim, 1.0f));
                 }
                 Furioso = true;
             break;
@@ -317,8 +332,9 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
-                
+                Invoke("RandomFace",2);
+                sleepAnim.SetActive(true);
+                StartCoroutine(StopAnimation(sleepAnim, 1.0f));
             break;
             default:
             GameOver();
@@ -334,8 +350,9 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
-                
+                Invoke("RandomFace",2);
+                showerAnim.SetActive(true);
+                StartCoroutine(StopAnimation(showerAnim, 1.0f));
             break;
             default:
             GameOver();
@@ -351,8 +368,9 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
-                
+                Invoke("RandomFace",2);
+                waterAnim.SetActive(true);
+                StartCoroutine(StopAnimation(waterAnim, 1.0f));
             break;
             default:
             GameOver();
