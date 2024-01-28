@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class InputHandler : MonoBehaviour
@@ -68,6 +69,9 @@ public class InputHandler : MonoBehaviour
     public GameObject motivationAnim;
     public GameObject hugAnim;
     public GameObject cleanAnim;
+
+    public GameObject pollillo;
+    public GameObject carillas; 
 
     private float realTime;
     private float totalTime;
@@ -272,6 +276,8 @@ public class InputHandler : MonoBehaviour
         {
             Debug.Log("valiste madre morro");
             explosionAnim.SetActive(true);
+            pollillo.SetActive(false);
+            carillas.SetActive(false);
             StartCoroutine(DelayDeath(1.5f));
         }
         else
@@ -289,7 +295,8 @@ public class InputHandler : MonoBehaviour
     IEnumerator DelayDeath(float secs)
     {
         yield return new WaitForSeconds(secs);
-        UnityEditor.EditorApplication.isPlaying = false;
+        SceneManager.LoadSceneAsync("MenuPrincipal");
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
     void RandomFace(){
@@ -358,11 +365,11 @@ public class InputHandler : MonoBehaviour
                 Happy = true;
                 CancelInvoke("GameOver");
                 realTime = TimeEmotion;
-                Invoke("RandomFace",2);
+                Invoke("RandomFace",3);
                 playAnim.SetActive(true);
                     ControllerSound.Instance.ExecuteSound(PlaySound);
                     Debug.Log(PioFeliz1);
-                StartCoroutine(StopAnimation(playAnim, 1.0f));
+                StartCoroutine(StopAnimation(playAnim, 1.8f));
                 break;
                 default:
                 GameOver();
@@ -388,10 +395,10 @@ public class InputHandler : MonoBehaviour
                         Happy = true;
                         CancelInvoke("GameOver");
                         realTime = TimeEmotion;
-                        Invoke("RandomFace",2);
+                        Invoke("RandomFace",3);
                         eatAnim.SetActive(true);
                         ControllerSound.Instance.ExecuteSound(EatSound);
-                        StartCoroutine(StopAnimation(eatAnim, 1.0f));
+                        StartCoroutine(StopAnimation(eatAnim, 2.0f));
                     }
                     Furioso = true;
                 break;
@@ -411,10 +418,10 @@ public class InputHandler : MonoBehaviour
                 Happy = true;
                 CancelInvoke("GameOver");
                 realTime = TimeEmotion;
-                Invoke("RandomFace",2);
+                Invoke("RandomFace",3);
                 cleanAnim.SetActive(true);
                     ControllerSound.Instance.ExecuteSound(CleanSound);
-                StartCoroutine(StopAnimation(cleanAnim, 1.0f));
+                StartCoroutine(StopAnimation(cleanAnim, 2.0f));
                 
             break;
             default:
@@ -445,17 +452,17 @@ public class InputHandler : MonoBehaviour
     }
     void MotivationChicken(){
         Debug.Log("Motivation");
-if (!Happy){
+        if (!Happy){
         switch(Task){
             case 3:
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
                 realTime = TimeEmotion;
-                Invoke("RandomFace",2); // 1 + 1
+                Invoke("RandomFace",3); // 1 + 1
                 motivationAnim.SetActive(true);
-                    ControllerSound.Instance.ExecuteSound(DoItSound);
-                StartCoroutine(StopAnimation(motivationAnim, 1.0f));
+                ControllerSound.Instance.ExecuteSound(DoItSound);
+                StartCoroutine(StopAnimation(motivationAnim, 1.8f));
             break;
             default:
             GameOver();
@@ -473,9 +480,9 @@ if (!Happy){
                     Happy = true;
                     CancelInvoke("GameOver");
                     realTime = TimeEmotion;
-                    Invoke("RandomFace",2);
+                    Invoke("RandomFace",3);
                     sleepAnim.SetActive(true);
-                    StartCoroutine(StopAnimation(sleepAnim, 1.0f));
+                    StartCoroutine(StopAnimation(sleepAnim, 2.0f));
                 }
                 Furioso = true;
             break;
@@ -484,10 +491,10 @@ if (!Happy){
                 Happy = true;
                 CancelInvoke("GameOver");
                 realTime = TimeEmotion;
-                Invoke("RandomFace",2);
+                Invoke("RandomFace",3);
                 sleepAnim.SetActive(true);
                     ControllerSound.Instance.ExecuteSound(SleepSound);
-                StartCoroutine(StopAnimation(sleepAnim, 1.0f));
+                StartCoroutine(StopAnimation(sleepAnim, 2.0f));
             break;
             default:
             GameOver();
@@ -504,10 +511,10 @@ if (!Happy){
                 Happy = true;
                 CancelInvoke("GameOver");
                 realTime = TimeEmotion;
-                Invoke("RandomFace",2);
+                Invoke("RandomFace",3);
                 showerAnim.SetActive(true);
                     ControllerSound.Instance.ExecuteSound(WashSound);
-                StartCoroutine(StopAnimation(showerAnim, 1.0f));
+                StartCoroutine(StopAnimation(showerAnim, 2.0f));
             break;
             default:
             GameOver();
@@ -517,17 +524,17 @@ if (!Happy){
     }
     void WaterChicken(){
         Debug.Log("Water");
-if (!Happy){
+        if (!Happy){
         switch(Task){
             case 8:
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
                 realTime = TimeEmotion;
-                Invoke("RandomFace",2);
+                Invoke("RandomFace",3);
                 waterAnim.SetActive(true);
                     ControllerSound.Instance.ExecuteSound(GlugluSound);
-                StartCoroutine(StopAnimation(waterAnim, 1.0f));
+                StartCoroutine(StopAnimation(waterAnim, 2.0f));
             break;
             default:
             GameOver();

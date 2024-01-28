@@ -3641,6 +3641,8 @@ MonoBehaviour:
   motivationAnim: {fileID: 12439699}
   hugAnim: {fileID: 860580163}
   cleanAnim: {fileID: 820602253}
+  pollillo: {fileID: 1012708730}
+  carillas: {fileID: 605147927}
 --- !u!82 &1431675716
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3653,7 +3655,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 61b76e61e9cd9e440847975cad4898ea, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
