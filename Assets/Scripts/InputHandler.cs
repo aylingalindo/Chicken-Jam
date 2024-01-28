@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem; 
+using TMPro;
+using UnityEngine.InputSystem;
+using System.Runtime.InteropServices;
 
 public class InputHandler : MonoBehaviour
 {
@@ -20,12 +22,17 @@ public class InputHandler : MonoBehaviour
     public Button Shower;
     public Button Water;
 
+    public TMP_Text CounterText;
+
     private int Task;
     private bool Furioso;
     private bool Happy = false;
     public int TimeEmotion = 8;
 
     private int PlayerPuntuation = 1;
+
+    private float realTime;
+    private bool initTimer = false;
 
 
     private void Awake() {
@@ -64,7 +71,18 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (initTimer)
+        {
+            if (realTime > 0)
+            {
+                if (realTime - Time.deltaTime < 0)
+                    realTime = 0;
+                else
+                    realTime -= Time.deltaTime;
+                CounterText.text = realTime.ToString("F2");
+            }
+            Debug.Log(realTime);
+        }
     }
 
     /*private IEnumerator PerformAction()
@@ -124,6 +142,8 @@ public class InputHandler : MonoBehaviour
             Debug.Log("Chevin el jemima");
             PlayerPuntuation = PlayerPuntuation - 1;
             RandomFace();
+            realTime = TimeEmotion;
+            initTimer = true;
             Invoke("GameOver", TimeEmotion);
         }
     }
