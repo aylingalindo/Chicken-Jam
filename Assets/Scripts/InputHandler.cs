@@ -6,12 +6,16 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+
 public class InputHandler : MonoBehaviour
 {
     private Camera _mainCamera;
+    public GameObject[] hearts;
 
     public List<Sprite> sprites;
     public SpriteRenderer spriteR;
+
+    public int life;
 
     //Cosas de sonido
     //Expresiones
@@ -34,8 +38,6 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private AudioClip SleepSound;
     [SerializeField] private AudioClip GlugluSound;
 
-
-
     public Button Play;
     public Button Eat;
     public Button Sleep;
@@ -49,6 +51,7 @@ public class InputHandler : MonoBehaviour
     private bool Furioso;
     private bool Happy = false;
     private bool winner = false;
+    private bool dead;
     public int TimeEmotion = 20;
 
     public TMP_Text CounterText;
@@ -102,6 +105,8 @@ public class InputHandler : MonoBehaviour
     {
         DayText.text = "Día: " + currentDay;
 
+
+        life = hearts.Length;
         explosionAnim.SetActive(false);
         showerAnim.SetActive(false);
         waterAnim.SetActive(false);
@@ -127,6 +132,10 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+        {
+            Debug.Log("ESTAMOS MUERTOS");
+        }
         if(!winner){
         totalTime+=Time.deltaTime;
         if(totalTime>=dayTime){
@@ -285,7 +294,9 @@ public class InputHandler : MonoBehaviour
             fallaste = true;
             CancelInvoke("GameOver");
             Debug.Log("Chevin el jemima");
+            TakeDamage(1);
             PlayerPuntuation = PlayerPuntuation - 1;
+            
             RandomFace();
             realTime = TimeEmotion;
             Invoke("GameOver", TimeEmotion);
@@ -541,5 +552,19 @@ public class InputHandler : MonoBehaviour
             //RandomFace();
             break;
         }}
+    }
+
+
+    public void TakeDamage(int damage)
+    {
+        if (life >= 0)
+        {
+            life -= damage;
+            Destroy(hearts[life].gameObject);
+            if(life <= 0)
+            {
+                dead = true;
+            }
+        }
     }
 }
