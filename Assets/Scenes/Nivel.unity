@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 12439700}
   m_Layer: 0
-  m_Name: MotivacionObject
+  m_Name: motivationAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 442732089}
   m_Layer: 0
-  m_Name: AguaBeberObject
+  m_Name: waterAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -853,7 +853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 563253379}
   m_Layer: 0
-  m_Name: RegaderaObject
+  m_Name: showerAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1257,7 +1257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 681189510}
   m_Layer: 0
-  m_Name: JugarObject
+  m_Name: playAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1583,7 +1583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 799807416}
   m_Layer: 0
-  m_Name: ComerObject
+  m_Name: eatAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1615,7 +1615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 820602254}
   m_Layer: 0
-  m_Name: LimpiarObject
+  m_Name: cleanAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1647,7 +1647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860580164}
   m_Layer: 0
-  m_Name: AbrazoObject
+  m_Name: hugAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2201,7 +2201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1285808063}
   m_Layer: 0
-  m_Name: BonkObject
+  m_Name: sleepAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2535,6 +2535,15 @@ MonoBehaviour:
   Shower: {fileID: 345636736}
   Water: {fileID: 568507819}
   TimeEmotion: 8
+  explosionAnim: {fileID: 1862058207}
+  showerAnim: {fileID: 563253378}
+  waterAnim: {fileID: 442732088}
+  sleepAnim: {fileID: 1285808062}
+  playAnim: {fileID: 681189509}
+  eatAnim: {fileID: 799807415}
+  motivationAnim: {fileID: 12439699}
+  hugAnim: {fileID: 860580163}
+  cleanAnim: {fileID: 820602253}
 --- !u!1 &1590522826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,7 +2871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1862058208
 SpriteRenderer:
   m_ObjectHideFlags: 0
