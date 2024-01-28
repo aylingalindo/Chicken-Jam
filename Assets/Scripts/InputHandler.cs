@@ -32,7 +32,6 @@ public class InputHandler : MonoBehaviour
     private int PlayerPuntuation = 1;
 
     private float realTime;
-    private bool initTimer = false;
 
 
     private void Awake() {
@@ -71,8 +70,6 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (initTimer)
-        {
             if (realTime > 0)
             {
                 if (realTime - Time.deltaTime < 0)
@@ -82,7 +79,6 @@ public class InputHandler : MonoBehaviour
                 CounterText.text = realTime.ToString("F2");
             }
             Debug.Log(realTime);
-        }
     }
 
     /*private IEnumerator PerformAction()
@@ -143,7 +139,6 @@ public class InputHandler : MonoBehaviour
             PlayerPuntuation = PlayerPuntuation - 1;
             RandomFace();
             realTime = TimeEmotion;
-            initTimer = true;
             Invoke("GameOver", TimeEmotion);
         }
     }
@@ -193,7 +188,9 @@ public class InputHandler : MonoBehaviour
         if (Happy == true){
             //CompleteAction();
             Debug.Log("Completaste este peduki");
-        }    
+        }
+
+        realTime = TimeEmotion;
         Invoke("GameOver", TimeEmotion);
         
         Happy = false;
@@ -210,6 +207,7 @@ public class InputHandler : MonoBehaviour
                     spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
                     Invoke("RandomFace",1);
                 
                 break;
@@ -229,6 +227,7 @@ public class InputHandler : MonoBehaviour
                         spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
+                        realTime = TimeEmotion;
                         Invoke("RandomFace",1);
                 
                     }
@@ -249,7 +248,8 @@ public class InputHandler : MonoBehaviour
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
@@ -266,7 +266,8 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
@@ -283,7 +284,8 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
@@ -301,7 +303,8 @@ if (!Happy){
                     spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                    Invoke("RandomFace",1);
+                        realTime = TimeEmotion;
+                        Invoke("RandomFace",1);
                 }
                 Furioso = true;
             break;
@@ -309,7 +312,8 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
@@ -326,7 +330,8 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
@@ -343,7 +348,8 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                Invoke("RandomFace",1);
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
                 
             break;
             default:
