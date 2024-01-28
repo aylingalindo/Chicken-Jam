@@ -24,12 +24,14 @@ public class InputHandler : MonoBehaviour
     private int Task;
     private bool Furioso;
     private bool Happy = false;
+    private bool winner = false;
     public int TimeEmotion = 20;
 
     public TMP_Text CounterText;
     public TMP_Text DayText;
 
     public GameObject VictoryPng;
+    public GameObject VictoryBgPng;
 
     private int PlayerPuntuation = 1;
 
@@ -45,7 +47,7 @@ public class InputHandler : MonoBehaviour
 
     private float realTime;
     private float totalTime;
-    private float dayTime = 40f;
+    private float dayTime = 25f;
     private float currentDay = 1;
 
     private void Awake() {
@@ -97,9 +99,10 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!winner){
         totalTime+=Time.deltaTime;
         if(totalTime>=dayTime){
+                currentDay++;
             totalTime = 0f;
             if(currentDay<6){
                 
@@ -108,12 +111,13 @@ public class InputHandler : MonoBehaviour
                     Invoke("RandomFace",1);
                     
             DayText.text = "Siguiente día";
-                currentDay++;
                 Invoke("setDay", 1);
             }
             else if (currentDay >= 7)
             {
                 VictoryPng.SetActive(true);
+                VictoryBgPng.SetActive(true);
+                winner = true;
             }
         }
         if (realTime > 0)
@@ -123,6 +127,10 @@ public class InputHandler : MonoBehaviour
             else
                 realTime -= Time.deltaTime;
             CounterText.text = realTime.ToString("F2");
+        }
+        }
+        else{
+            StartCoroutine(Delay(4f));
         }
     }
 
