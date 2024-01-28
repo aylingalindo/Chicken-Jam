@@ -121,7 +121,7 @@ public class InputHandler : MonoBehaviour
     public void Counter()
     {
         int TiempoTest = 10;
-        TiempoTest -= Time.deltaTime;
+        //TiempoTest -= Time.deltaTime;
 
     }
 
