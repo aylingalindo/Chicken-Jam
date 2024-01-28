@@ -2668,8 +2668,8 @@ MonoBehaviour:
   Clean: {fileID: 426112745}
   Shower: {fileID: 345636736}
   Water: {fileID: 568507819}
-  CounterText: {fileID: 609248916}
   TimeEmotion: 8
+  CounterText: {fileID: 609248916}
   explosionAnim: {fileID: 1862058207}
   showerAnim: {fileID: 563253378}
   waterAnim: {fileID: 442732088}
