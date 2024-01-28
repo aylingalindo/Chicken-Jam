@@ -114,7 +114,7 @@ public class InputHandler : MonoBehaviour
 
     void GameOver()
     {
-        if (PlayerPuntuation == 0 || Task == 2 || Task == 3|| Task == 7|| Task == 8)
+        if (PlayerPuntuation == 0)
         {
             Debug.Log("valiste madre morro");
         }
@@ -125,14 +125,51 @@ public class InputHandler : MonoBehaviour
             PlayerPuntuation = PlayerPuntuation - 1;
             RandomFace();
             Invoke("GameOver", TimeEmotion);
-            tiempoRestante = tiempoInicial;
         }
     }
 
     void RandomFace(){
 
+        // if you just have one life remaining, the task is going to be strong emotion acordingly
+        if (PlayerPuntuation == 0) {
+            switch(Task){
+                case 2: 
+                case 3:
+                case 7:
+                case 8:
+                int[] specificNumbers = { 2, 3, 7, 8 };
+                int randomIndex = Random.Range(0, specificNumbers.Length);
+                Task = specificNumbers[randomIndex];
+                break;
 
-        Task = Random.Range(1,9);
+                case 1:
+                Task = 2;
+                break;
+
+                case 4:
+                Task = 7;
+                break;
+
+                case 5:
+                Task = 3;
+                break;
+
+                case 6:
+                Task = 8;
+                break;
+
+                default:
+                Task = Random.Range(1,9);
+                break;
+
+            }
+        } 
+        // if you have the two lives, the task is random
+        else {
+            // logica de los dias?
+            Task = Random.Range(1,9);
+        }
+
         if (Happy == true){
             //CompleteAction();
             Debug.Log("Completaste este peduki");
