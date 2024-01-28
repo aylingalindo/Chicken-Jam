@@ -24,9 +24,12 @@ public class InputHandler : MonoBehaviour
     private int Task;
     private bool Furioso;
     private bool Happy = false;
-    public int TimeEmotion = 8;
+    public int TimeEmotion = 20;
 
     public TMP_Text CounterText;
+    public TMP_Text DayText;
+
+    public GameObject VictoryPng;
 
     private int PlayerPuntuation = 1;
 
@@ -41,6 +44,9 @@ public class InputHandler : MonoBehaviour
     public GameObject cleanAnim;
 
     private float realTime;
+    private float totalTime;
+    private float dayTime = 40f;
+    private float currentDay = 1;
 
     private void Awake() {
         _mainCamera = Camera.main;
@@ -64,6 +70,8 @@ public class InputHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+            DayText.text = "Día: " + currentDay;
+
         explosionAnim.SetActive(false);
         showerAnim.SetActive(false);
         waterAnim.SetActive(false);
@@ -75,7 +83,7 @@ public class InputHandler : MonoBehaviour
         cleanAnim.SetActive(false);
 
         RandomFace();
-
+        setDay();
         Play.onClick.AddListener(PlayChicken);
         Eat.onClick.AddListener(EatChicken);
         Sleep.onClick.AddListener(SleepChicken);
@@ -89,6 +97,25 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        totalTime+=Time.deltaTime;
+        if(totalTime>=dayTime){
+            totalTime = 0f;
+            if(currentDay<6){
+                
+                CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",1);
+                    
+            DayText.text = "Siguiente día";
+                currentDay++;
+                Invoke("setDay", 1);
+            }
+            else if (currentDay >= 7)
+            {
+                VictoryPng.SetActive(true);
+            }
+        }
         if (realTime > 0)
         {
             if (realTime - Time.deltaTime < 0)
@@ -97,7 +124,31 @@ public class InputHandler : MonoBehaviour
                 realTime -= Time.deltaTime;
             CounterText.text = realTime.ToString("F2");
         }
-        Debug.Log(realTime);
+    }
+
+    void setDay(){
+        switch(currentDay){
+            case 1:
+                TimeEmotion = 20;
+            break;
+            case 2:
+                TimeEmotion = 10;
+            break;
+            case 3:
+                TimeEmotion = 8;
+            break;
+            case 4:
+                TimeEmotion = 5;
+            break;
+            case 5:
+                TimeEmotion = 4;
+            break;
+            case 6:
+                TimeEmotion = 2;
+            break;
+        }
+        
+            DayText.text = "Día: " + currentDay;
     }
 
     /*private IEnumerator PerformAction()
