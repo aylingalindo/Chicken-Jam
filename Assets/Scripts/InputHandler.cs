@@ -37,12 +37,15 @@ public class InputHandler : MonoBehaviour
     private int Task;
     private bool Furioso;
     private bool Happy = false;
+    private bool winner = false;
     public int TimeEmotion = 20;
 
     public TMP_Text CounterText;
     public TMP_Text DayText;
 
     public GameObject VictoryPng;
+    public GameObject VictoryBgPng;
+    private bool fallaste = false; 
 
     private int PlayerPuntuation = 1;
 
@@ -58,8 +61,8 @@ public class InputHandler : MonoBehaviour
 
     private float realTime;
     private float totalTime;
-    private float dayTime = 40f;
-    private float currentDay = 1;
+    private float dayTime = 2f;
+    private float currentDay = 6;
 
     private void Awake() {
         _mainCamera = Camera.main;
@@ -110,9 +113,10 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!winner){
         totalTime+=Time.deltaTime;
         if(totalTime>=dayTime){
+                currentDay++;
             totalTime = 0f;
             if(currentDay<6){
                 
@@ -121,12 +125,13 @@ public class InputHandler : MonoBehaviour
                     Invoke("RandomFace",1);
                     
             DayText.text = "Siguiente día";
-                currentDay++;
                 Invoke("setDay", 1);
             }
             else if (currentDay >= 7)
             {
                 VictoryPng.SetActive(true);
+                VictoryBgPng.SetActive(true);
+                winner = true;
             }
         }
         if (realTime > 0)
@@ -136,6 +141,10 @@ public class InputHandler : MonoBehaviour
             else
                 realTime -= Time.deltaTime;
             CounterText.text = realTime.ToString("F2");
+        }
+        }
+        else{
+            StartCoroutine(DelayDeath(4f));
         }
     }
 
@@ -253,10 +262,11 @@ public class InputHandler : MonoBehaviour
         {
             Debug.Log("valiste madre morro");
             explosionAnim.SetActive(true);
-            StartCoroutine(Delay(1.5f));
+            StartCoroutine(DelayDeath(1.5f));
         }
         else
         {
+            fallaste = true;
             CancelInvoke("GameOver");
             Debug.Log("Chevin el jemima");
             PlayerPuntuation = PlayerPuntuation - 1;
@@ -266,7 +276,7 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    IEnumerator Delay(float secs)
+    IEnumerator DelayDeath(float secs)
     {
         yield return new WaitForSeconds(secs);
         UnityEditor.EditorApplication.isPlaying = false;
@@ -275,7 +285,8 @@ public class InputHandler : MonoBehaviour
     void RandomFace(){
 
         // if you just have one life remaining, the task is going to be strong emotion acordingly
-        if (PlayerPuntuation == 0) {
+        if ((PlayerPuntuation == 0) && (fallaste == true)) { // agregar bool de fallaste
+            fallaste = false;
             switch(Task){
                 case 2: 
                 case 3:
@@ -333,12 +344,14 @@ public class InputHandler : MonoBehaviour
         if (!Happy){
             switch(Task){
                 case 1:
-                    spriteR.sprite = sprites[0];
+                spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                    realTime = TimeEmotion;
-                    Invoke("RandomFace",1);
-                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                realTime = TimeEmotion;
+                Invoke("RandomFace",2);
+                playAnim.SetActive(true);
+                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                StartCoroutine(StopAnimation(playAnim, 1.0f));
                 break;
                 default:
                 GameOver();
@@ -347,6 +360,13 @@ public class InputHandler : MonoBehaviour
             }
         }
     }
+
+    IEnumerator StopAnimation(GameObject anim, float time){
+        yield return new WaitForSeconds(time);
+        anim.SetActive(false);
+        //xsInvoke("RandomFace",1);
+    }
+
     void EatChicken(){
         Debug.Log("Eat");
         if (!Happy){
@@ -357,8 +377,10 @@ public class InputHandler : MonoBehaviour
                         Happy = true;
                         CancelInvoke("GameOver");
                         realTime = TimeEmotion;
-                        Invoke("RandomFace",1);
+                        Invoke("RandomFace",2);
+                        eatAnim.SetActive(true);
                         ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                        StartCoroutine(StopAnimation(eatAnim, 1.0f));
                     }
                     Furioso = true;
                 break;
@@ -376,12 +398,14 @@ public class InputHandler : MonoBehaviour
             case 4:
                 spriteR.sprite = sprites[0];
                 Happy = true;
-
                 CancelInvoke("GameOver");
-                    realTime = TimeEmotion;
-                    Invoke("RandomFace",1);
-                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
-                    break;
+                realTime = TimeEmotion;
+                Invoke("RandomFace",2);
+                cleanAnim.SetActive(true);
+                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                StartCoroutine(StopAnimation(cleanAnim, 1.0f));
+                
+            break;
             default:
             GameOver();
             //RandomFace();
@@ -390,16 +414,18 @@ public class InputHandler : MonoBehaviour
     }
     void HugChicken(){
         Debug.Log("Hug");
-if (!Happy){
+        if (!Happy){
         switch(Task){
             case 5:
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                    realTime = TimeEmotion;
-                    Invoke("RandomFace",1);
-                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
-                    break;
+                realTime = TimeEmotion;
+                Invoke("RandomFace",2);
+                hugAnim.SetActive(true);
+                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                StartCoroutine(StopAnimation(hugAnim, 1.0f));
+            break;
             default:
             GameOver();
             //RandomFace();
@@ -414,10 +440,12 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                    realTime = TimeEmotion;
-                    Invoke("RandomFace",1);
-                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
-                    break;
+                realTime = TimeEmotion;
+                Invoke("RandomFace",2); // 1 + 1
+                motivationAnim.SetActive(true);
+                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                StartCoroutine(StopAnimation(motivationAnim, 1.0f));
+            break;
             default:
             GameOver();
             //RandomFace();
@@ -426,15 +454,17 @@ if (!Happy){
     }
     void SleepChicken(){
         Debug.Log("Sleep");
-if (!Happy){
+        if (!Happy){
         switch(Task){ 
             case 2:
                 if(Furioso){
                     spriteR.sprite = sprites[0];
-                Happy = true;
-                CancelInvoke("GameOver");
-                        realTime = TimeEmotion;
-                        Invoke("RandomFace",1);
+                    Happy = true;
+                    CancelInvoke("GameOver");
+                    realTime = TimeEmotion;
+                    Invoke("RandomFace",2);
+                    sleepAnim.SetActive(true);
+                    StartCoroutine(StopAnimation(sleepAnim, 1.0f));
                 }
                 Furioso = true;
             break;
@@ -442,10 +472,12 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                    realTime = TimeEmotion;
-                    Invoke("RandomFace",1);
-                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
-                    break;
+                realTime = TimeEmotion;
+                Invoke("RandomFace",2);
+                sleepAnim.SetActive(true);
+                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                StartCoroutine(StopAnimation(sleepAnim, 1.0f));
+            break;
             default:
             GameOver();
             //RandomFace();
@@ -460,10 +492,12 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                    realTime = TimeEmotion;
-                    Invoke("RandomFace",1);
-                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
-                    break;
+                realTime = TimeEmotion;
+                Invoke("RandomFace",2);
+                showerAnim.SetActive(true);
+                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                StartCoroutine(StopAnimation(showerAnim, 1.0f));
+            break;
             default:
             GameOver();
             //RandomFace();
@@ -478,10 +512,12 @@ if (!Happy){
                 spriteR.sprite = sprites[0];
                 Happy = true;
                 CancelInvoke("GameOver");
-                    realTime = TimeEmotion;
-                    Invoke("RandomFace",1);
-                    ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
-                    break;
+                realTime = TimeEmotion;
+                Invoke("RandomFace",2);
+                waterAnim.SetActive(true);
+                ControllatorSounds.Instance.ExecuteSound(PioFeliz1);
+                StartCoroutine(StopAnimation(waterAnim, 1.0f));
+            break;
             default:
             GameOver();
             //RandomFace();
