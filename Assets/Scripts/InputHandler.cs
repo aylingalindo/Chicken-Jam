@@ -126,7 +126,7 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    void setDay(){
+    void setDay(){//si
         switch(currentDay){
             case 1:
                 TimeEmotion = 20;
